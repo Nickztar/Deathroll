@@ -1,15 +1,18 @@
 <script>
   import { currentRoll } from "./stores.js";
   let roll = 10;
-  let player1 = true;
+  let player1 = true; //Randomize who starts
   let playable = false;
   function rollDice() {
-    const newNumber = Math.floor(Math.random() * $currentRoll) + 1;
-    currentRoll.set(newNumber);
-    if (newNumber == 1) {
+    const newNumber = Math.floor(Math.random() * $currentRoll - 1) + 1;
+    console.log(newNumber);
+    if (newNumber <= 1) {
+      currentRoll.set(1);
       console.log(`${player1 ? "player1" : "player2"} won the game!🎉🎉`);
       playable = false;
+      player1 = true;
     } else {
+      currentRoll.set(newNumber);
       player1 = !player1;
     }
   }
@@ -41,6 +44,10 @@
     transform: translateX(-50%);
     width: 50%;
     height: 20%;
+  }
+  .player1 button:disabled,
+  .player2 button:disabled {
+    background-color: green;
   }
   .player1 .text-up {
     color: black;
@@ -87,14 +94,24 @@
 <main>
   {#if playable}
     <div class="player2">
-      <button disabled={player1 ? true : undefined} on:click={() => rollDice()}>
+      <button
+        disabled={player1 ? true : undefined}
+        on:click={() => {
+          rollDice();
+          console.log('Rolling');
+        }}>
         <span class="text-down">Player 2</span>
       </button>
       <h1 class="text-down roll-count">{$currentRoll}</h1>
     </div>
     <div class="player1">
       <h1 class="text-up roll-count">{$currentRoll}</h1>
-      <button disabled={player1 ? undefined : true} on:click={() => rollDice()}>
+      <button
+        disabled={player1 ? undefined : true}
+        on:click={() => {
+          rollDice();
+          console.log('Rolling');
+        }}>
         <span class="text-up">Player 1</span>
       </button>
     </div>
