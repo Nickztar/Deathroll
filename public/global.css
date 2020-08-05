@@ -42,6 +42,9 @@ body {
 .flex-column {
     flex-direction: column;
 }
+.no-min-height {
+    min-height: 0 !important;
+}
 .player1,
 .player2 {
     height: 50%;
