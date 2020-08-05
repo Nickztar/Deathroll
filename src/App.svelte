@@ -51,7 +51,6 @@
                 <Actions fullBleed class="no-min-height">
                     <Button
                         color="secondary"
-                        variant="raised"
                         style="height:100%; padding: 1vh"
                         on:click={() => {
                             if (Number(roll)) {
