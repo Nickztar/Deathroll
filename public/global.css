@@ -64,9 +64,6 @@ body {
     outline: none;
     border: none;
 }
-.player1 .text-up.roll-count {
-    position: relative;
-}
 .player2 {
     background-color: black;
     color: white;
@@ -84,4 +81,12 @@ body {
     -ms-transform: rotate(-180deg) translate(50%, 50%); /* IE */
     -o-transform: rotate(-180deg) translate(50%, 50%); /* Opera */
     transform: rotate(-180deg); /* future */
+}
+.player2 .text-down.roll-count {
+    margin-bottom: 10%;
+    font-size: 8vh;
+}
+.player1 .text-up.roll-count {
+    margin-top: 10%;
+    font-size: 8vh;
 }
