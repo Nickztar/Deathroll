@@ -12,6 +12,17 @@
     let roll = "";
     let invalid = false;
     let input = undefined;
+
+    function startPlaying(rollNumber) {
+        if (Number(rollNumber)) {
+            invalid = false;
+            currentRoll.set(rollNumber);
+            playable.set(true);
+        } else {
+            input.focus();
+            invalid = true;
+        }
+    }
 </script>
 
 <style>
@@ -34,6 +45,11 @@
                         <div style="margin: 2vh 0;">
                             <Textfield
                                 bind:this={input}
+                                on:keydown={(e) => {
+                                    if (e.which === 13 || e.keyCode === 13) {
+                                        startPlaying(roll);
+                                    }
+                                }}
                                 class="shaped-outlined"
                                 variant="outlined"
                                 invalid={invalid ? true : false}
@@ -53,14 +69,7 @@
                         color="secondary"
                         style="height:100%; padding: 1vh"
                         on:click={() => {
-                            if (Number(roll)) {
-                                invalid = false;
-                                currentRoll.set(roll);
-                                playable.set(true);
-                            } else {
-                                input.focus();
-                                invalid = true;
-                            }
+                            startPlaying(roll);
                         }}>
                         <Label>Start rolling</Label>
                         <Icon>

@@ -63,6 +63,7 @@ body {
 .player1 .roll-button {
     outline: none;
     border: none;
+    margin-bottom: 10%;
 }
 .player2 {
     background-color: black;
@@ -74,6 +75,11 @@ body {
     position: relative;
     outline: none;
     border: none;
+    margin-top: 10%;
+}
+.player2 .mdc-button--raised:disabled {
+    background-color: var(--mdc-theme-secondary, #72c045);
+    opacity: 0.4;
 }
 .player2 .text-down {
     -moz-transform: rotate(-180deg); /* Firefox */
