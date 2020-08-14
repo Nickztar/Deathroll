@@ -4,7 +4,7 @@ const assets = [
     "/",
     "/index.html",
     "/global.css",
-    "/extra.css",
+    "/build/extra.css",
     "/build/bundle.css",
     "/build/bundle.js",
 ];

@@ -62,7 +62,7 @@ export default {
         }),
         commonjs(),
         postcss({
-            extract: true,
+            extract: "extra.css",
             minimize: true,
             use: [
                 [
