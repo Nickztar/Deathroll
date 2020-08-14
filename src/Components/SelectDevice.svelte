@@ -2,8 +2,10 @@
   import { device1, devicesSet } from "../stores.js";
   import Card, { Content, PrimaryAction } from "@smui/card";
   import Loading from "./Loading.svelte";
+  import Spinner from "./Spinner.svelte";
   import GiCrownedSkull from "svelte-icons/gi/GiCrownedSkull.svelte";
   import IoIosPhonePortrait from "svelte-icons/io/IoIosPhonePortrait.svelte";
+  import IoIosRefresh from "svelte-icons/io/IoIosRefresh.svelte";
   const startPlay = onedevice => {
     if (onedevice) {
       device1.set(true);
@@ -26,6 +28,9 @@
 </script>
 
 <style>
+  h1 {
+    margin-bottom: 2vh;
+  }
   .icon {
     margin: 0 auto;
   }
@@ -37,6 +42,7 @@
   .icon.phone.two {
     display: flex;
     justify-content: space-around;
+    width: 50%;
   }
   .card-container {
     position: relative;
@@ -49,6 +55,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+  }
+
+  .dead {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.2);
   }
 </style>
 
@@ -79,10 +94,7 @@
               <GiCrownedSkull />
             </div>
             <h1>Connecting...</h1>
-            <div class="icon phone two">
-              <IoIosPhonePortrait />
-              <IoIosPhonePortrait />
-            </div>
+            <Spinner />
           </Content>
         </PrimaryAction>
       </Card>
@@ -105,17 +117,17 @@
       </Card>
     </div>
   {:catch error}
-    <div class="card-container dead">
+    <div class="card-container">
+      <div class="dead" />
       <Card style="width: 320px; text-align:center">
         <PrimaryAction on:click={() => (serverAlive = checkServer())}>
           <Content>
             <div class="icon">
               <GiCrownedSkull />
             </div>
-            <h1>Two Devices</h1>
-            <div class="icon phone two">
-              <IoIosPhonePortrait />
-              <IoIosPhonePortrait />
+            <h1>Server unavailable</h1>
+            <div class="icon phone">
+              <IoIosRefresh />
             </div>
           </Content>
         </PrimaryAction>
